@@ -63,7 +63,7 @@ export const userTaskCategory = async (req: AuthRequest, res: Response) => {
   }
 };
 
-export const trackUserTaskCategory = async (
+export const trackUserTaskCount = async (
   req: AuthRequest,
   res: Response
 ) => {

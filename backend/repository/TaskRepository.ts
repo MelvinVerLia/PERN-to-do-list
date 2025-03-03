@@ -30,7 +30,6 @@ export const selectTaskCategory = async (category_id: string) => {
 };
 
 export const selectUserTaskCategory = async (userId: string) => {
-  console.log("hi");
   const result = await query(
     "WITH TaskCount AS (SELECT t.category_id, COUNT(*) AS task_count FROM task t WHERE t.user_id = $1 GROUP BY t.category_id) SELECT c.name AS category_name, tc.task_count FROM TaskCount tc JOIN categories c ON tc.category_id = c.id ORDER BY tc.task_count DESC",
     [userId]
@@ -40,7 +39,7 @@ export const selectUserTaskCategory = async (userId: string) => {
 
 export const selectTaskCount = async (userId: string) => {
   const result = await query(
-    "SELECT TO_CHAR(created_at, 'Dy') AS day,  COUNT(*) AS total_tasks, SUM(CASE WHEN completed = true THEN 1 ELSE 0 END) AS completed_tasks, ROUND((SUM(CASE WHEN completed = true THEN 1 ELSE 0 END) * 100.0) / NULLIF(COUNT(*), 0),2) AS productivity FROM task WHERE user_id = $1 AND created_at >= NOW() - INTERVAL '6 days' GROUP BY day ORDER BY MIN(created_at)",
+      "SELECT TO_CHAR(created_at, 'Dy') AS day,  COUNT(*) AS total_tasks, SUM(CASE WHEN completed = true THEN 1 ELSE 0 END) AS completed_tasks, ROUND((SUM(CASE WHEN completed = true THEN 1 ELSE 0 END) * 100.0) / NULLIF(COUNT(*), 0),2) AS productivity FROM task WHERE user_id = $1 AND created_at >= NOW() - INTERVAL '6 days' GROUP BY day ORDER BY MIN(created_at)",
     [userId]
   );
   return result.rows || null;

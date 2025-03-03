@@ -14,8 +14,8 @@ import {
   getAllTasks,
   addTask,
   userTaskCategory,
-  trackUserTaskCategory,
   setComplete,
+  trackUserTaskCount,
 } from "./controller/TaskController";
 import { authorize } from "./middleware/Authorization";
 import cookieParser from "cookie-parser";
@@ -58,6 +58,6 @@ app.get("/category", getAllCategories);
 
 app.get("/user/task/category", authorize, userTaskCategory);
 
-app.get("/task/count", authorize, trackUserTaskCategory);
+app.get("/task/count", authorize, trackUserTaskCount);
 
 app.put("/set/complete", authorize, setComplete);

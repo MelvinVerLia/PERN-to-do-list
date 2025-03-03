@@ -443,12 +443,12 @@ export default function TaskList({ tasks }: TaskListProps) {
                     </div>
 
                     <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded border dark:border-gray-700 flex items-center mb-6">
-                      <ClockIcon className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400" />
                       <div>
-                        <span className="text-xs font-medium dark:text-gray-400 text-gray-800">
+                        <span className="text-xs font-medium dark:text-gray-400 text-gray-800 flex mb-1">
+                          <ClockIcon className="h-4 w-4 mr-1  text-gray-500 dark:text-gray-400" />{" "}
                           Deadline
                         </span>
-                        <p className="font-semibold dark:text-gray-300 text-gray-700">
+                        <p className="font-semibold text-sm  dark:text-gray-300 text-gray-700">
                           {formatDate(selectedTask.deadline)}
                         </p>
                       </div>
